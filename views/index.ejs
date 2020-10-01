@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Too-doo | <%= title %></title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+    <div class ="wrapper">
+        <body>
+            <h1 class="welcome">Welcome to Your Too-doo list</h1>
+            <div class="container">
+                <form action="/", method="POST">
+                    <input type="text", placeholder="Name of your list", id="new_list", name="new_list", class="new_list">
+                    <button type="submit", name="submit", id="submit", class="submit"></button>
+                </form>
+            </div> 
+        </body>
+        <footer>
+            <h2>Too-doo</h2>
+            <p>Your To-dos have never been simpler</p>
+        </footer>
+    </div>
+
+</html>
