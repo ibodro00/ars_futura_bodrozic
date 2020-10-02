@@ -127,12 +127,12 @@ body{
     height:25px;
     width:25px;
     text-decoration: none;
-    padding-top:8px;
-    padding-bottom:8px;
+    padding-top:10px;
+    padding-bottom:10px;
     margin-left:-35px;
     background-image:url(plus.png);
     background-repeat:no-repeat;
-    background-position:5px 5px;
+    background-position:6px 4px;
     cursor: pointer;
   }
 
@@ -282,6 +282,19 @@ body{
   input[type=text]{
     padding: 4px 7px 4px 7px;
     background-position: 1px 1px;
+  }
+  button[type=submit]{
+    
+    height:20px;
+    width:20px;
+    
+    padding-top:6px;
+    padding-bottom:6px;
+   
+    background-image:url(plus.png);
+ 
+    background-position:6px 2px;
+    
   }
   .mark{
     font-size:16px;
