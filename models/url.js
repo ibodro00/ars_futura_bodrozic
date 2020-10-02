@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 const urlschema = new Schema({
     data:{
         type:String,
-        require:true,
-        minlength: [1, 'Minimum input length is 1 character']
+        require:true
     },
     uuid:{
         type:String,
