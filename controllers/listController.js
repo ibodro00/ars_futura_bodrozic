@@ -6,6 +6,20 @@ const jwt = require('jsonwebtoken');
 
 const duration = 3*24*60*60;
 
+const handle_error = (err) => {
+
+    errors = {input:''};
+
+    if(err.message.includes('List validation failed')){
+        Object.values(err.errors).forEach (({properties}) => {
+        errors[properties.path] =properties.message;
+        
+            })
+        }
+       
+        return errors;
+
+}
 const createToken = n => {
     return jwt.sign({n}, 'toodoo auth', {
         expiresIn:duration
@@ -84,5 +98,4 @@ module.exports = {
     list_post,
     list_delete,
     list_put
-   
 }

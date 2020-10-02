@@ -17,8 +17,9 @@
                 <div><h1 class="list_name" contenteditable="true"><%= nm.data%></h1><button class="edit">Save title</button></div>
                 <button class="submit_list">New list</button>
                 <form action="/<%= x %>", method="POST">
-                    <input type="text", placeholder="Add a too-doo", id="td", name="td", class="td">
+                    <input type="text", placeholder="Add a too-doo", id="td", name="td", class="td", maxlength="30" required>
                     <button type="submit", name="add", id="add"></button>
+                    <div class="error"></div>
                     
                      <% if(items.length >0) { %>
                      <% items.forEach(item => {  %>
@@ -40,7 +41,7 @@
         
                     <%  }) %>
                     <% } else {%>
-                    <p>There is nothing in the Too-doo list</p>
+                    <p class="nothing">There is nothing in the Too-doo list</p>
                     <% }%>
 
                 </form>
@@ -166,8 +167,6 @@
             
     }
 })
-
-    
 
 
 </script>
