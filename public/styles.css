@@ -150,6 +150,7 @@ body{
     padding-left: 34px;
     cursor: pointer;
     font-size: 20px;
+   word-break:break-all;
   }
 
   .mark input {
@@ -197,16 +198,15 @@ body{
   .trashcan{
     display:inline-block;
     width:5%;
-    
   }
   .trashcan img{
-    vertical-align: middle;
-    margin-bottom:3px;
-    
+    position: absolute;
+    left:0;
+
   }
   .delete{
+    position: relative;
    padding:10px; 
-   
   }
   .delete:hover{
    cursor: pointer;
@@ -369,7 +369,7 @@ body{
     height: 8px;
   }
   .delete img{
-    width:80%;
+    width:60%;
     margin-bottom:0;
   }
 }
