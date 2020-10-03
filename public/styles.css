@@ -120,6 +120,7 @@ body{
   input[type=text]:focus{
     border: 2px solid grey;
   }
+
   button[type=submit]{
     background-color: rgb(231, 231, 231);
     border: none;
