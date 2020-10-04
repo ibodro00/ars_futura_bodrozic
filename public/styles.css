@@ -151,7 +151,7 @@ body{
     padding-left: 34px;
     cursor: pointer;
     font-size: 20px;
-   word-break:break-all;
+    word-break:break-all;
   }
 
   .mark input {
@@ -207,7 +207,7 @@ body{
   }
   .delete{
     position: relative;
-   padding:10px; 
+    padding:10px; 
   }
   .delete:hover{
    cursor: pointer;
@@ -370,7 +370,10 @@ body{
     height: 8px;
   }
   .delete img{
-    width:60%;
-    margin-bottom:0;
+    width:70%;
+    top:30%;
+  }
+  .welcome{
+    font-size: 2em;
   }
 }
