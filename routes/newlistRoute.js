@@ -1,11 +1,10 @@
-const express = require('express');
-const newlistController = require('../controllers/newlistController');
+const express = require("express");
+const newlistController = require("../controllers/newlistController");
 
+const router = express.Router();
 
-const router=express.Router();
-
-router.get('/',  newlistController.newlist_get);
-router.post('/', newlistController.newlist_post);
-router.get('/:id/:item', newlistController.list_new);
+router.get("/", newlistController.newlist_get);
+router.post("/", newlistController.newlist_post);
+router.get("/:id/:item", newlistController.list_new);
 
 module.exports = router;

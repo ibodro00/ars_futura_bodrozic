@@ -1,175 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Too-doo | <%= title %></title>
-    <link rel="stylesheet" href="/styles.css">
-    
-</head>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
 
-<div class="wrapper">
+  <div class="wrapper">
     <body>
-        <div class="list_title"></div>
-            <div class="container">
-                <div><h1 class="list_name" contenteditable="true"><%= nm.data%></h1><button class="edit">Save title</button></div>
-                <button class="submit_list">New list</button>
-                <form action="/<%= x %>", method="POST" autocomplete="off">
-                    <input type="text", placeholder="Add a too-doo", id="td", name="td", class="td",  required>
-                    <button type="submit", name="add", id="add"></button>
-                    <div class="error"></div>
-                    
-                     <% if(items.length >0) { %>
-                     <% items.forEach(item => {  %>
-                        
-                    <div class="iteminlist">
-                        <label class="mark" id="mark" >
-                            <input type="checkbox" class="checkbox" id="checkbox" data-ch="<%= item._id %>" >
-                            <%= item.name %>
-                            <span class="checkmark">
-                            </span>
-                        
-                        </label>   
-                     
-                    </div>     
-                    <div class="trashcan">
-                        <a class="delete" id="delete" data-delete="<%= item._id %>">
-                            <img src="can.png" alt="delete">
-                        </a>
-                    </div>
-        
-                    <%  }) %>
-                    <% } else {%>
-                    <p class="nothing">There is nothing in the Too-doo list</p>
-                    <% }%>
+      <div class="list_title"></div>
+      <div class="container">
+        <div>
+          <h1 class="list_name" contenteditable="true"><%= nm.data%></h1>
+          <button class="edit">Save title</button>
+        </div>
+        <button class="submit_list">New list</button>
+        <form action="/<%= x %>" , method="POST" autocomplete="off">
+          <input
+            type="text"
+            ,
+            placeholder="Add a too-doo"
+            ,
+            id="td"
+            ,
+            name="td"
+            ,
+            class="td"
+            ,
+            required
+          />
+          <button type="submit" , name="add" , id="add"></button>
+          <div class="error"></div>
 
-                </form>
-            </div>
-        </body>
-        <footer>
-             <h2>Too-doo</h2>
-            <p>Your To-dos have never been simpler</p>
-        </footer>
-</div>
+          <% if(items.length >0) { %> <% items.forEach(item => { %>
 
-<script>
+          <div class="iteminlist">
+            <label class="mark" id="mark">
+              <input
+                type="checkbox"
+                class="checkbox"
+                id="checkbox"
+                data-ch="<%= item._id %>"
+              />
+              <%= item.name %>
+              <span class="checkmark"> </span>
+            </label>
+          </div>
+          <div class="trashcan">
+            <a class="delete" id="delete" data-delete="<%= item._id %>">
+              <img src="can.png" alt="delete" />
+            </a>
+          </div>
 
+          <% }) %> <% } else {%>
+          <p class="nothing">There is nothing in the Too-doo list</p>
+          <% }%>
+        </form>
+      </div>
+    </body>
+    <footer>
+      <h2>Too-doo</h2>
+      <p>Your To-dos have never been simpler</p>
+    </footer>
+  </div>
+
+  <script>
     // delete item
 
     const dels = document.querySelectorAll("a.delete");
-    for(const del of dels) {
-    del.addEventListener('click', (event) => {
+    for (const del of dels) {
+      del.addEventListener("click", (event) => {
         const endpoint = `/<%= x %>/${del.dataset.delete}`;
         fetch(endpoint, {
-            method:'DELETE'
+          method: "DELETE",
         })
-        .then(result => 
-            result.json()
-        )
-        .then(info => {
-            window.location.href =info.redirect;
-        })
-        .catch(error => {
+          .then((result) => result.json())
+          .then((info) => {
+            window.location.href = info.redirect;
+          })
+          .catch((error) => {
             console.log(error);
-        })
-    })
+          });
+      });
     }
 
     // change title
 
     const h1 = document.querySelector("h1.list_name");
 
-    h1.addEventListener('click', event => {
-        h1.className = "list_name_selected";
-    })
-    document.body.addEventListener('click', function(event) {
-        if(event.target.className != "list_name_selected")
-            h1.className = "list_name";
-    
-    })
+    h1.addEventListener("click", (event) => {
+      h1.className = "list_name_selected";
+    });
+    document.body.addEventListener("click", function (event) {
+      if (event.target.className != "list_name_selected")
+        h1.className = "list_name";
+    });
 
     // Save title
 
     const title = document.querySelector("button.edit");
-    
-    title.addEventListener('click', event => {
-        const h1_value = h1.textContent;
-        const endpoint = `/<%= x %>/${h1_value}`;
-        console.log(endpoint);
-        fetch(endpoint, {
-            method:'PUT'
-        })
-        .then(result => 
-            result.json()
-        )
-        .then(info => {
-            window.location.href =info.redirect;
-        })
-        .catch(error => {
-            console.log(error);
-        })
-    })
 
-     // new list
+    title.addEventListener("click", (event) => {
+      const h1_value = h1.textContent;
+      const endpoint = `/<%= x %>/${h1_value}`;
+      console.log(endpoint);
+      fetch(endpoint, {
+        method: "PUT",
+      })
+        .then((result) => result.json())
+        .then((info) => {
+          window.location.href = info.redirect;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+
+    // new list
 
     const btn1 = document.querySelector("button.submit_list");
     const btn1_value = btn1.textContent;
-    btn1.addEventListener('click', event => {
-        const endpoint = `/<%= x %>/${btn1_value}`;
-        fetch(endpoint, {
-            method:'GET'
+    btn1.addEventListener("click", (event) => {
+      const endpoint = `/<%= x %>/${btn1_value}`;
+      fetch(endpoint, {
+        method: "GET",
+      })
+        .then((result) => result.json())
+        .then((info) => {
+          window.location.href = info.redirect;
         })
-        .then(result =>
-            result.json()
-        )
-        .then(info=>{
-            window.location.href=info.redirect;
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
 
-     // checkboxes
-    
-    window.addEventListener('load', function() {
-    
-    var cbstatus = JSON.parse(localStorage['CBStatus'] || '{}');
-    
-    for(var i in cbstatus)
-    {
-        
+    // checkboxes
+
+    window.addEventListener("load", function () {
+      var cbstatus = JSON.parse(localStorage["CBStatus"] || "{}");
+
+      for (var i in cbstatus) {
         var el = document.querySelectorAll('input[data-ch="' + i + '"]');
-        for(const j of el)
-        {
-        if (j) j.checked = true;
+        for (const j of el) {
+          if (j) j.checked = true;
         }
-    }
+      }
 
-    const all = document.querySelectorAll("input.checkbox");
+      const all = document.querySelectorAll("input.checkbox");
 
-    for(const a of all)
-    {
-            a.addEventListener('click', function(event) {
-                
-                if(this.checked)
-                {
-                    cbstatus[this.dataset.ch] = true;
-                }
-                else if(cbstatus[this.dataset.ch])
-                {
-                    delete cbstatus[this.dataset.ch];
-                }
-                console.log(this.dataset.ch);
-                localStorage.CBStatus = JSON.stringify(cbstatus);
-            })
-            
-    }
-})
-
-
-</script>
-
+      for (const a of all) {
+        a.addEventListener("click", function (event) {
+          if (this.checked) {
+            cbstatus[this.dataset.ch] = true;
+          } else if (cbstatus[this.dataset.ch]) {
+            delete cbstatus[this.dataset.ch];
+          }
+          console.log(this.dataset.ch);
+          localStorage.CBStatus = JSON.stringify(cbstatus);
+        });
+      }
+    });
+  </script>
 </html>
